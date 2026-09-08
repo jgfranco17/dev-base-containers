@@ -1,5 +1,5 @@
 ---
 name: ubuntu
 variants:
-  - '22.04'
-  - '24.04'
+  - UBUNTU_VERSION: '22.04'
+  - UBUNTU_VERSION: '24.04'
