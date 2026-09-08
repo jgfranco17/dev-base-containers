@@ -1,0 +1,29 @@
+name: Compliance Checks
+
+"on":
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  lint:
+    name: Run Linters
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Run setup
+        uses: ./.github/actions/setup-workspace
+
+      - name: Install pre-commit
+        run: |
+          pip install pre-commit
+
+      - name: Run pre-commit
+        run: |
+          pre-commit run --all-files --verbose
