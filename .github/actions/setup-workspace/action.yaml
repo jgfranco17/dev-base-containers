@@ -1,0 +1,23 @@
+---
+name: "Setup Development Workspace"
+description: "Configure Python and prepare the workspace"
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v7
+      with:
+        python-version-file: 'pyproject.toml'
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v10.0.0
+
+    - name: Sync dependencies
+      shell: bash
+      run: |
+        uv --version
+        uv sync --all-groups
+
+    - name: Install Just
+      uses: extractions/setup-just@v4
