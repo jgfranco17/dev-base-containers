@@ -1,0 +1,5 @@
+---
+name: ubuntu
+variants:
+  - '22.04'
+  - '24.04'
