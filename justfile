@@ -5,5 +5,5 @@ _default:
     @just --list --unsorted
 
 # Build the Docker images in a specified directory
-build directory:
-    @python3 ./generate_base_images.py {{ directory }}
+build *args:
+    @uv run python3 generate_base_images.py {{ args }}
