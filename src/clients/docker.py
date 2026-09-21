@@ -37,13 +37,16 @@ class DockerAccessor:
         if not self._context.exists():
             raise FileNotFoundError(f"Docker context not found: {self._context}")
 
-        if not repository:
-            logger.warning(
-                "Repository is not specified, user will have to rely on local tagging"
-            )
         if repository.endswith("/"):
             repository = repository.rstrip("/")
         self._repository = repository
+        if not self._repository:
+            logger.warning(
+                "Repository is not specified, user will have to rely on local tagging"
+            )
+        else:
+            logger.info(f"Using repository: {self._repository}")
+
         logger.info(f"Initialized Docker accessor with context='{self._context}'")
 
     def _log_event(self, event: str, message: str) -> None:
@@ -88,7 +91,7 @@ class DockerAccessor:
             "-t",
             target,
             "-f",
-            str(image.dockerfile.absolute()),
+            str(self._context / "Dockerfile"),
             str(self._context),
         ]
         if image.args:
