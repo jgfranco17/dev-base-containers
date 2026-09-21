@@ -45,11 +45,3 @@ jobs:
           echo "docker_tags<<EOF" >> $GITHUB_OUTPUT
           echo "$TAGS" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-
-      - name: Publish ${{ matrix.variant.name }} image
-        uses: docker/build-push-action@v5
-        with:
-          file: Dockerfile
-          context: .
-          push: true
-          tags: ${{ steps.images.outputs.docker_tags }}
