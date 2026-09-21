@@ -1,0 +1,8 @@
+---
+repository: ghcr.io/jgfranco17/dev-base-containers
+images:
+  - name: ubuntu
+    directory: ubuntu
+    matrix:
+      - UBUNTU_VERSION: '22.04'
+      - UBUNTU_VERSION: '24.04'

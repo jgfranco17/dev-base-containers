@@ -1,0 +1,47 @@
+name: Build
+
+"on":
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  generate-image-variants:
+    name: Generate Image Variants
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        variant:
+          - name: ubuntu
+            path: docker/ubuntu
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Run setup
+        uses: ./.github/actions/setup-workspace
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt install -y jq
+
+      - name: Build base images (${{ matrix.variant.name }})
+        id: images
+        run: |
+          uv run python3 generate_base_images.py \
+            -c ${{ matrix.variant.path }} \
+            -f docker/variants.yaml \
+            -o ${{ matrix.variant.name }}-summary.json
+
+          JSON_DATA=$(cat ${{ matrix.variant.name }}-summary.json)
+          TAGS=$(echo "$JSON_DATA" | jq -r '.images[]')
+          echo "docker_tags<<EOF" >> $GITHUB_OUTPUT
+          echo "$TAGS" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
