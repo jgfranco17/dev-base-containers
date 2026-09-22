@@ -4,8 +4,8 @@ from typing import Any
 
 import pytest
 
-from src.build import BuildSummary, VariantBuildClient
-from src.clients.docker import BaseImageDefinition
+from multibuilder.build import BuildSummary, VariantBuildClient
+from multibuilder.clients.docker import BaseImageDefinition
 
 
 class TestBuildSummaryWriteToFile:

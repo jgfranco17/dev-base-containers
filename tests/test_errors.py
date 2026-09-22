@@ -1,6 +1,6 @@
 import pytest
 
-from src.core.errors import ClientError, CoreError
+from multibuilder.core.errors import ClientError, CoreError
 
 
 class TestCoreError:

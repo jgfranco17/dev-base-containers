@@ -4,8 +4,8 @@ from typing import Any
 
 import pytest
 
-from src.clients.docker import BaseImageDefinition, DockerAccessor
-from src.core.errors import ClientError
+from multibuilder.clients.docker import BaseImageDefinition, DockerAccessor
+from multibuilder.core.errors import ClientError
 
 
 class FakePopen:

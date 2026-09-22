@@ -12,7 +12,7 @@ from pathlib import Path
 
 import click
 
-from src.build import VariantBuildClient
+from multibuilder.build import VariantBuildClient
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(

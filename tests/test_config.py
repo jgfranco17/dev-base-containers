@@ -2,7 +2,11 @@ from pathlib import Path
 
 import pytest
 
-from src.core.config import VARIANT_DEFINITION_FILE, BuildConfiguration, VariantDefinition
+from multibuilder.core.config import (
+    VARIANT_DEFINITION_FILE,
+    BuildConfiguration,
+    VariantDefinition,
+)
 
 
 class TestVariantDefinition:
