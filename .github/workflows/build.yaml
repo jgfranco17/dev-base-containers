@@ -16,8 +16,22 @@ permissions:
   packages: write
 
 jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Run setup
+        uses: ./.github/actions/setup-workspace
+
+      - name: Run pytest
+        run: just test
+
   generate-image-variants:
     name: Generate Image Variants
+    needs: test
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
