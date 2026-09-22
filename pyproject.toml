@@ -1,5 +1,5 @@
 [project]
-name = "imvar-cli"
+name = "spindler-cli"
 version = "0.1.0"
 description = "CLI for building base images for variants of development containers."
 readme = "README.md"
@@ -10,14 +10,14 @@ dependencies = [
 ]
 
 [project.scripts]
-imvar-cli = "imvar.entrypoint:cli"
+spindler-cli = "spindler.entrypoint:cli"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["imvar"]
+packages = ["spindler"]
 
 [tool.black]
 line-length = 90
@@ -32,7 +32,7 @@ line-length = 90
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-ra --cov=imvar --cov-report=term-missing"
+addopts = "-ra --cov=spindler --cov-report=term-missing"
 
 [dependency-groups]
 dev = [

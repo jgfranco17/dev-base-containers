@@ -1,4 +1,4 @@
-"""CLI entrypoint for imvar.
+"""CLI entrypoint for spindler.
 
 We use Click to build a single CLI tool with subcommands instead of standalone
 scripts, so all build tooling for the development container images lives
@@ -10,7 +10,7 @@ from pathlib import Path
 
 import click
 
-from imvar.build import VariantBuildClient
+from spindler.build import VariantBuildClient
 
 logger = logging.getLogger(__name__)
 

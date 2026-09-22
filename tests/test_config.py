@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from imvar.core.config import (
+from spindler.core.config import (
     VARIANT_DEFINITION_FILE,
     BuildConfiguration,
     VariantDefinition,

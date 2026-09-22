@@ -1,6 +1,6 @@
 import pytest
 
-from imvar.core.errors import ClientError, CoreError
+from spindler.core.errors import ClientError, CoreError
 
 
 class TestCoreError:

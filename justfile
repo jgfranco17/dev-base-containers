@@ -23,8 +23,8 @@ install:
     echo "NOTE: Remember to activate the virtual environment before running other commands."
 
 # Build the Docker images in a specified directory
-imvar-cli *args:
-    @uv run imvar-cli {{ args }}
+spindler-cli *args:
+    @uv run spindler-cli {{ args }}
 
 # Run the Python test suite
 pytest *args:
