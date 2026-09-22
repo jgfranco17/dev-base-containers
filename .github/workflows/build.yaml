@@ -66,7 +66,7 @@ jobs:
         id: images
         run: |
           export SUMMARY_FILE=${{ matrix.variant }}-summary.json
-          uv run python3 generate_base_images.py \
+          uv run multibuilder-cli build \
             -c docker/${{ matrix.variant }} \
             -f docker/variants.yaml \
             -o "${SUMMARY_FILE}"

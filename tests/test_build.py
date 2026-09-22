@@ -103,7 +103,7 @@ class TestVariantBuildClientBuildAll:
             return f"{definition.name}:{definition.tag}"
 
         monkeypatch.setattr(
-            "src.clients.docker.DockerAccessor.build", fake_build, raising=True
+            "multibuilder.clients.docker.DockerAccessor.build", fake_build, raising=True
         )
 
         client = VariantBuildClient(
@@ -127,7 +127,7 @@ class TestVariantBuildClientBuildAll:
             return f"{definition.name}:{definition.tag}"
 
         monkeypatch.setattr(
-            "src.clients.docker.DockerAccessor.build", fake_build, raising=True
+            "multibuilder.clients.docker.DockerAccessor.build", fake_build, raising=True
         )
 
         client = VariantBuildClient(
@@ -146,7 +146,7 @@ class TestVariantBuildClientBuildAll:
         monkeypatch: pytest.MonkeyPatch,
     ) -> None:
         monkeypatch.setattr(
-            "src.clients.docker.DockerAccessor.build",
+            "multibuilder.clients.docker.DockerAccessor.build",
             lambda self, definition: f"{definition.name}:{definition.tag}",
             raising=True,
         )
