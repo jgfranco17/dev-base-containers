@@ -27,10 +27,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
 
-      - name: Run setup
+      - name: Setup workspace
         uses: ./.github/actions/setup-workspace
 
-      - name: Run pytest
+      - name: Run Pytest suite
         run: just pytest -vv
 
   generate-image-variants:
@@ -47,7 +47,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
 
-      - name: Run setup
+      - name: Setup workspace
         uses: ./.github/actions/setup-workspace
 
       - name: Log in to GitHub Container Registry
