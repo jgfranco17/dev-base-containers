@@ -4,8 +4,8 @@ from typing import Any
 
 import pytest
 
-from src.clients.docker import BaseImageDefinition, DockerAccessor
-from src.core.errors import ClientError
+from spindler.clients.docker import BaseImageDefinition, DockerAccessor
+from spindler.core.errors import ClientError
 
 
 class FakePopen:

@@ -4,8 +4,8 @@ from typing import Any
 
 import pytest
 
-from src.build import BuildSummary, VariantBuildClient
-from src.clients.docker import BaseImageDefinition
+from spindler.build import BuildSummary, VariantBuildClient
+from spindler.clients.docker import BaseImageDefinition
 
 
 class TestBuildSummaryWriteToFile:
@@ -103,7 +103,7 @@ class TestVariantBuildClientBuildAll:
             return f"{definition.name}:{definition.tag}"
 
         monkeypatch.setattr(
-            "src.clients.docker.DockerAccessor.build", fake_build, raising=True
+            "spindler.clients.docker.DockerAccessor.build", fake_build, raising=True
         )
 
         client = VariantBuildClient(
@@ -127,7 +127,7 @@ class TestVariantBuildClientBuildAll:
             return f"{definition.name}:{definition.tag}"
 
         monkeypatch.setattr(
-            "src.clients.docker.DockerAccessor.build", fake_build, raising=True
+            "spindler.clients.docker.DockerAccessor.build", fake_build, raising=True
         )
 
         client = VariantBuildClient(
@@ -146,7 +146,7 @@ class TestVariantBuildClientBuildAll:
         monkeypatch: pytest.MonkeyPatch,
     ) -> None:
         monkeypatch.setattr(
-            "src.clients.docker.DockerAccessor.build",
+            "spindler.clients.docker.DockerAccessor.build",
             lambda self, definition: f"{definition.name}:{definition.tag}",
             raising=True,
         )
