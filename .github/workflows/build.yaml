@@ -16,7 +16,7 @@ permissions:
   packages: write
 
 jobs:
-  test:
+  unit-tests:
     name: Run Tests
     runs-on: ubuntu-latest
     steps:
@@ -27,11 +27,11 @@ jobs:
         uses: ./.github/actions/setup-workspace
 
       - name: Run pytest
-        run: just test
+        run: just pytest -vv
 
   generate-image-variants:
     name: Generate Image Variants
-    needs: test
+    needs: unit-tests
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
