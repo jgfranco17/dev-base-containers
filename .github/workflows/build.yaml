@@ -4,10 +4,16 @@ name: Build
   push:
     branches:
       - main
+    tags:
+      - "*.*.*"
   pull_request:
     branches:
       - main
   workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
 
 jobs:
   generate-image-variants:
@@ -17,8 +23,7 @@ jobs:
       fail-fast: false
       matrix:
         variant:
-          - name: ubuntu
-            path: docker/ubuntu
+          - ubuntu
 
     steps:
       - name: Checkout repository
@@ -27,21 +32,38 @@ jobs:
       - name: Run setup
         uses: ./.github/actions/setup-workspace
 
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Install tools
         run: |
           sudo apt-get update
           sudo apt install -y jq
 
-      - name: Build base images (${{ matrix.variant.name }})
+      - name: Build base images (${{ matrix.variant }})
         id: images
         run: |
+          export SUMMARY_FILE=${{ matrix.variant }}-summary.json
           uv run python3 generate_base_images.py \
-            -c ${{ matrix.variant.path }} \
+            -c docker/${{ matrix.variant }} \
             -f docker/variants.yaml \
-            -o ${{ matrix.variant.name }}-summary.json
+            -o "${SUMMARY_FILE}"
 
-          JSON_DATA=$(cat ${{ matrix.variant.name }}-summary.json)
+          JSON_DATA=$(cat "${SUMMARY_FILE}")
           TAGS=$(echo "$JSON_DATA" | jq -r '.images[]')
           echo "docker_tags<<EOF" >> $GITHUB_OUTPUT
           echo "$TAGS" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Publish images
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          echo "${{ steps.images.outputs.docker_tags }}" | while read -r tag; do
+            [ -z "$tag" ] && continue
+            echo "Pushing $tag"
+            docker push "$tag"
+          done
