@@ -23,8 +23,8 @@ install:
     echo "NOTE: Remember to activate the virtual environment before running other commands."
 
 # Build the Docker images in a specified directory
-multibuilder-cli *args:
-    @uv run multibuilder-cli {{ args }}
+imvar-cli *args:
+    @uv run imvar-cli {{ args }}
 
 # Run the Python test suite
 pytest *args:

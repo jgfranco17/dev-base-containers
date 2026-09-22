@@ -1,4 +1,4 @@
-"""CLI entrypoint for multibuilder.
+"""CLI entrypoint for imvar.
 
 We use Click to build a single CLI tool with subcommands instead of standalone
 scripts, so all build tooling for the development container images lives
@@ -10,7 +10,7 @@ from pathlib import Path
 
 import click
 
-from multibuilder.build import VariantBuildClient
+from imvar.build import VariantBuildClient
 
 logger = logging.getLogger(__name__)
 

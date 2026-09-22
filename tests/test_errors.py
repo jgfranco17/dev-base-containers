@@ -1,6 +1,6 @@
 import pytest
 
-from multibuilder.core.errors import ClientError, CoreError
+from imvar.core.errors import ClientError, CoreError
 
 
 class TestCoreError:

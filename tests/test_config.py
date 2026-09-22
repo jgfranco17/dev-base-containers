@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from multibuilder.core.config import (
+from imvar.core.config import (
     VARIANT_DEFINITION_FILE,
     BuildConfiguration,
     VariantDefinition,

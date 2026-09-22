@@ -5,7 +5,7 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
 
-from multibuilder.core.errors import ClientError
+from imvar.core.errors import ClientError
 
 logger = logging.getLogger(__name__)
 

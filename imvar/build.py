@@ -5,8 +5,8 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 
-from multibuilder.clients.docker import BaseImageDefinition, DockerAccessor
-from multibuilder.core.config import VARIANT_DEFINITION_FILE, BuildConfiguration
+from imvar.clients.docker import BaseImageDefinition, DockerAccessor
+from imvar.core.config import VARIANT_DEFINITION_FILE, BuildConfiguration
 
 logger = logging.getLogger(__name__)
 
